@@ -1,0 +1,51 @@
+.mat-elevation-z8,
+.mat-mdc-elevation-specific.mat-elevation-z8 {
+  box-shadow: none !important;
+}
+.noData {
+  padding: 80px 20px;
+
+  p {
+    text-align: center;
+    font-size: 24px;
+  }
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+}
+
+.filter-button {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.text-truncates {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  // white-space: nowrap;
+}
+
+.product-status {
+  padding: 3px 10px;
+  border-radius: 20px;
+  width: fit-content;
+  white-space: nowrap;
+
+  &.in {
+    background: var(--success-50);
+    color: var(--success-500);
+  }
+  &.out {
+    background: var(--warn-50);
+    color: var(--warn-500);
+  }
+}

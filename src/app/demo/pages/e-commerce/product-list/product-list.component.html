@@ -1,0 +1,103 @@
+<div class="row">
+  <div class="col-sm-12">
+    <app-card cardTitle="Product-list">
+      <ng-template #headerOptionsTemplate>
+        <button mat-flat-button color="primary" (click)="addProduct()">Add Product</button>
+      </ng-template>
+      <div class="mat-elevation-z8 table-responsive">
+        <div class="filter-button">
+          <button mat-flat-button color="primary" (click)="stock('stock')" class="m-r-10">Stock</button>
+          <button mat-flat-button color="primary" (click)="reset()" class="m-r-10">Reset</button>
+          <button mat-flat-button color="primary" (click)="outStock('out Of stock')">out-of-stock</button>
+        </div>
+        <div class="search">
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>Filter</mat-label>
+            <input matInput [(ngModel)]="searchText" (input)="applyFilter($event)" placeholder="Search" #input />
+          </mat-form-field>
+        </div>
+        <div *ngIf="productData.length === 0" class="noData">
+          <p>Data not found !!</p>
+        </div>
+        <table *ngIf="productData.length !== 0" mat-table [dataSource]="dataSource" matSort>
+          <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+            <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Product Name </th>
+            <td mat-cell *matCellDef="let element">
+              <div class="flex">
+                <div class="flex-shrink-0">
+                  <img src="{{ element.images }}" alt="user-image" class="wid-55 hei-55 b-rad-10" />
+                </div>
+                <div class="flex-grow-1 m-l-15">
+                  <div class="m-b-5 row">
+                    <span class="col-6 text-truncate f-w-500">{{ element.productName }}</span>
+                  </div>
+                  <p class="text-muted f-12 m-b-0 row">
+                    <span class="col-6 text-truncate mat-caption">{{ element.description }}</span>
+                  </p>
+                </div>
+              </div>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="categories">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> CATEGORIES </th>
+            <td mat-cell *matCellDef="let element" class="text-center"> {{ element.category }} </td>
+          </ng-container>
+          <ng-container matColumnDef="qty">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Quantity </th>
+            <td mat-cell *matCellDef="let element" class="text-center"> {{ element.quantity }} </td>
+          </ng-container>
+          <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> PRICE </th>
+            <td mat-cell *matCellDef="let element" class="text-center"> ${{ element.price }} </td>
+          </ng-container>
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> STATUS </th>
+            <td mat-cell *matCellDef="let element" class="text-center">
+              <div class="product-status" [ngClass]="element.status === 'stock' ? 'in' : 'out'">
+                {{ element.status }}
+              </div>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> DATE </th>
+            <td mat-cell *matCellDef="let element" class="text-center">
+              {{ element.date | date: 'dd-MM-yyyy' }}
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> ACTIONS </th>
+            <td mat-cell *matCellDef="let element">
+              <div class="flex align-item-center">
+                <a class="avatar avatar-s" (click)="ProductView(element)">
+                  <svg class="pc-icon text-accent-500">
+                    <use xlink:href="assets/fonts/custom-icon.svg#custom-eye"></use>
+                  </svg>
+                </a>
+                <a class="avatar avatar-s" (click)="EditData(element)">
+                  <svg class="pc-icon text-primary-500">
+                    <use xlink:href="assets/fonts/custom-icon.svg#custom-edit"></use>
+                  </svg>
+                </a>
+                <a class="avatar avatar-s" (click)="DeleteData(element?.id)">
+                  <svg class="pc-icon text-warn-500">
+                    <use xlink:href="assets/fonts/custom-icon.svg#custom-trash"></use>
+                  </svg>
+                </a>
+              </div>
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 15, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+        </mat-paginator>
+      </div>
+    </app-card>
+  </div>
+</div>

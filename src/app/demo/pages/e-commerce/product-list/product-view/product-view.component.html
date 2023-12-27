@@ -1,0 +1,50 @@
+<div class="product-view-tab">
+  <div *ngIf="productViewData">
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="product-images">
+          <img src="{{ productViewData.images }}" class="img-fluid" alt="" />
+        </div>
+      </div>
+      <div class="col-sm-9">
+        <div class="f-16 f-w-600 m-b-10">
+          {{ productViewData.productName }}
+        </div>
+        <p>{{ productViewData.about }}</p>
+
+        <div class="row m-b-10">
+          <div class="col-3">
+            <div>Categories</div>
+          </div>
+          <div class="col-9">
+            {{ productViewData.category }}
+          </div>
+        </div>
+        <div class="row m-b-10">
+          <div class="col-3">
+            <div>QTY</div>
+          </div>
+          <div class="col-9">
+            {{ productViewData.quantity }}
+          </div>
+        </div>
+        <div class="row m-b-10">
+          <div class="col-3">
+            <div>Price</div>
+          </div>
+          <div class="col-9">
+            {{ productViewData.offerPrice }}
+          </div>
+        </div>
+        <div class="row m-b-10">
+          <div class="col-3">
+            <div>Date</div>
+          </div>
+          <div class="col-9">
+            {{ productViewData.date | date: 'dd-MM-yyyy' }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

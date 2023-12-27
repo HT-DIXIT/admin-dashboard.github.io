@@ -1,0 +1,22 @@
+<div class="delete-product">
+  <div class="content">
+    <div class="delete-logo">
+      <i class="ti ti-trash"></i>
+    </div>
+    <div class="delete-content">
+      <div class="f-20 f-w-600 text-center">
+        Are you sure you want to delete?
+      </div>
+      <p class="text-center m-t-15">By deleting <strong>"100"</strong> user, all task assigned to that user will also be
+        deleted.</p>
+    </div>
+    <div class="row">
+      <div class="col-6 grid">
+        <button mat-stroked-button (click)="onNo()">Cancel</button>
+      </div>
+      <div class="col-6 grid">
+        <button mat-flat-button color="warn" (click)="onDelete()">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>

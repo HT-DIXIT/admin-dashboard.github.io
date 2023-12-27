@@ -1,0 +1,68 @@
+<div class="product-list-details">
+  <app-card [showHeader]="false" [padding]="16">
+    <div class="product-page-header">
+      <div class="flex align-item-center">
+        <mat-form-field appearance="outline" class="w-100">
+          <input matInput placeholder="Placeholder" (keyup)="applyFilter($event)" #input />
+        </mat-form-field>
+      </div>
+    </div>
+  </app-card>
+  @if (productData) {
+  @if (productData.length === 0) {
+  <div class="row">
+    <div class="col-sm-12">
+      <app-card [showHeader]="false">
+        <div class="no-product">
+          <div class="row justify-content-center align-item-center">
+            <div class="col-sm-6 text-end">
+              <img src="assets/images/e-comm/empty.png" alt="img" class="img-fluid" />
+            </div>
+            <div class="col-sm-6 text-start">
+              <div class="f-38 f-w-600">There is no Product</div>
+              <div class="f-16 f-w-600 text-muted">Try checking your spelling or use more general terms</div>
+              <button mat-flat-button color="warn" class="m-t-10">
+                <div class="flex align-item-center">
+                  Reset Filter
+                  <i class="ti ti-chevron-right m-l-10 f-20"></i>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </app-card>
+    </div>
+  </div>
+  } @else {
+  <div class="row">
+    @for (product of productData; track product) {
+    <div class="col-md-6 col-lg-4">
+      <app-card [showHeader]="false" [padding]="0" cardClass="product-card">
+        <div class="product-img">
+          <a href="javascript:" [ngClass]="{ unStock: product.status ===  'out of stock' }">
+            <img src="{{ product.images }}" alt="product-img" class="img-prod img-fluid" />
+          </a>
+        </div>
+        <div class="product-content">
+          <a href="javascript:">
+            <div class="prod-name text-muted text-truncate">{{ product.productName }}</div>
+          </a>
+          <div>{{ product.date }}</div>
+          <div class="flex align-items-center justify-content-between m-t-10">
+            <div class="f-20 f-w-600 prod-price">
+              <b>${{ product.offerPrice }}</b>
+              <span class="mat-small text-muted f-w-400">${{ product.price }}</span>
+            </div>
+            <button mat-flat-button color="primary" [disabled]="product.status ===  'out of stock'"
+              (click)="addToCart(product)">
+              {{ product.status === 'stock' ? 'Add To Cart' : 'Sold Out' }}
+            </button>
+          </div>
+        </div>
+      </app-card>
+    </div>
+    }
+  </div>
+  }
+  }
+</div>

@@ -1,0 +1,84 @@
+<form class="product-form" [formGroup]="productForm" (submit)="submitForm()">
+  <h3 class="text-center">Add Product</h3>
+
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Product Sku Id</mat-label>
+    <input matInput type="number" formControlName="id" placeholder="Product id" />
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Select</mat-label>
+    <mat-select formControlName="images" [(value)]="selected">
+      <mat-option value="assets/images/e-comm/prod-1.png">prod-1.png</mat-option>
+      <mat-option value="assets/images/e-comm/prod-2.png">prod-2.png</mat-option>
+      <mat-option value="assets/images/e-comm/prod-3.png">prod-3.png</mat-option>
+      <mat-option value="assets/images/e-comm/prod-4.png">prod-4.png</mat-option>
+      <mat-option value="assets/images/e-comm/prod-5.png">prod-5.png</mat-option>
+      <mat-option value="assets/images/e-comm/prod-6.png">prod-6.png</mat-option>
+      <mat-option value="assets/images/e-comm/prod-7.png">prod-7.png</mat-option>
+      <mat-option value="assets/images/e-comm/prod-8.png">prod-8.png</mat-option>
+      <mat-option value="assets/images/e-comm/prod-9.png">prod-9.png</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Product Name</mat-label>
+    <input matInput placeholder="Product Name" formControlName="productName" />
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Product Description</mat-label>
+    <textarea matInput formControlName="description" placeholder="Product About"></textarea>
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Product About</mat-label>
+    <textarea matInput formControlName="about" placeholder="Product Details"></textarea>
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Product Category</mat-label>
+    <input matInput placeholder="Product Category" formControlName="category" />
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Product Quantity </mat-label>
+    <input matInput type="number" placeholder="Product Name" formControlName="quantity" />
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Actual Price</mat-label>
+    <input matInput placeholder="Product price" formControlName="price" />
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Discount Price</mat-label>
+    <input matInput placeholder="Offer Price" formControlName="offerPrice" />
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Listing Date</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="date" />
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Select</mat-label>
+    <mat-select formControlName="status" [(value)]="statusSelected">
+      <mat-option value="stock">Stock</mat-option>
+      <mat-option value="out of stock">Out of Stock</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- more addition functionality -->
+
+  <!-- <mat-checkbox [(ngModel)]="showInput" [ngModelOptions]="{standalone: true}" (change)="toggleInput()">Show Input</mat-checkbox>
+    <div class="w-100 hide" [ngClass]="{'show': showInput}">
+        <mat-form-field appearance="outline" class="w-100">
+            <mat-label>offer Price</mat-label>
+            <input matInput placeholder="content" formControlName="content">
+        </mat-form-field>
+        <div *ngFor="let field of formFields">
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Additional Field</mat-label>
+                <input matInput placeholder="Additional Field" formControlName="addContent">
+            </mat-form-field>
+        </div>
+        
+        <button mat-raised-button color="primary" (click)="addFormField()">Add Form Field</button>
+    </div> -->
+  <div class="text-center">
+    <button mat-raised-button color="primary">Submit</button>
+  </div>
+</form>
